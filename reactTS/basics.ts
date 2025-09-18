@@ -20,22 +20,21 @@ isInstructor = false;
 
 let hobbies: string[]; // Array of strings
 
-hobbies = ["Coding", "Music"];
-
-let person: {
+type Person = {
   name: string;
   age: number;
-};
+}; // Type alias
+
+hobbies = ["Coding", "Music"];
+
+let person: Person;
 
 person = {
   name: "Sarah",
   age: 22,
 };
 
-let people: {
-  name: string;
-  age: number;
-}[]; // Array of objects (persons)
+let people: Person[]; // Array of objects (persons)
 
 // Type inference
 // Rely on type inference and not type without needing

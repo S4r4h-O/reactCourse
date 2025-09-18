@@ -44,3 +44,13 @@ let people: Person[]; // Array of objects (persons)
 let course: string | number = "React - The Complete Guide";
 
 course = 1234;
+
+// Functions and types
+
+function add(a: number, b: number) {
+  return a + b;
+}
+
+function printOpt(value: any) {
+  console.log(value);
+} // Void type

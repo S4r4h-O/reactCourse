@@ -15,3 +15,24 @@ userName = "Sarah";
 let isInstructor: boolean;
 
 isInstructor = false;
+
+// More complex types
+
+let hobbies: string[]; // Array of strings
+
+hobbies = ["Coding", "Music"];
+
+let person: {
+  name: string;
+  age: number;
+};
+
+person = {
+  name: "Sarah",
+  age: 22,
+};
+
+let people: {
+  name: string;
+  age: number;
+}[]; // Array of objects (persons)

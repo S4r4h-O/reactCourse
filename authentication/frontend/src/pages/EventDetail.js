@@ -30,7 +30,7 @@ async function loadEvent(id) {
   const response = await fetch("http://localhost:8080/events/" + id);
 
   if (!response.ok) {
-    throw json(
+    throw Response(
       { message: "Could not fetch details for selected event." },
       {
         status: 500,
@@ -50,7 +50,7 @@ async function loadEvents() {
     // throw new Response(JSON.stringify({ message: 'Could not fetch events.' }), {
     //   status: 500,
     // });
-    throw json(
+    throw Response(
       { message: "Could not fetch events." },
       {
         status: 500,
@@ -65,7 +65,7 @@ async function loadEvents() {
 export async function loader({ request, params }) {
   const id = params.eventId;
 
-  return defer({
+  return Response({
     event: await loadEvent(id),
     events: loadEvents(),
   });

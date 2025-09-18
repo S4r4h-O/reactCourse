@@ -36,3 +36,10 @@ let people: {
   name: string;
   age: number;
 }[]; // Array of objects (persons)
+
+// Type inference
+// Rely on type inference and not type without needing
+
+let course = "React - The Complete Guide";
+
+// course = 1234

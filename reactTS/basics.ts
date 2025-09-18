@@ -40,6 +40,8 @@ let people: {
 // Type inference
 // Rely on type inference and not type without needing
 
-let course = "React - The Complete Guide";
+// Type union
 
-// course = 1234
+let course: string | number = "React - The Complete Guide";
+
+course = 1234;

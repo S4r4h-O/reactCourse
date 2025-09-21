@@ -77,13 +77,21 @@ function App() {
 
       return {
         ...prevState,
-        selectedProjectId: undefined,
+        selectedProjectId: prevState.selectedProjectId,
         tasks: [newTask, ...prevState.tasks],
       };
     });
   }
 
-  function handleDeleteTask() {}
+  function handleDeleteTask(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId,
@@ -113,6 +121,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {content}
     </main>

@@ -17,7 +17,12 @@ export default function Tasks({ tasks, onAdd, onDelete }) {
           {tasks.map((task) => (
             <li className="flex justify-between my-4" key={task.id}>
               <span>{task.text}</span>
-              <button className="btn btn-error">Delete</button>
+              <button
+                className="btn btn-error"
+                onClick={() => onDelete(task.id)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

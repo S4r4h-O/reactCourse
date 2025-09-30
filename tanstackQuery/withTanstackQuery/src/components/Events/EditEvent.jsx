@@ -5,7 +5,7 @@ import Modal from "../UI/Modal.jsx";
 import EventForm from "./EventForm.jsx";
 import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
-import { fetchEvent, updateEvent } from "../../util/http.js";
+import { fetchEvent, updateEvent, queryClient } from "../../util/http.js";
 import { useParams } from "react-router-dom";
 
 export default function EditEvent() {
@@ -20,6 +20,24 @@ export default function EditEvent() {
 
   const { mutate } = useMutation({
     mutationFn: updateEvent,
+    onMutate: async (data) => {
+      // Optimistic updating - updating the page without waiting for a
+      // response from the server
+      const newEvent = data.event;
+      await queryClient.cancelQueries({ queryKey: ["events", params.id] });
+      // Roll back if query fails
+      const prevEvent = queryClient.getQueryData(["events", params.id]);
+
+      queryClient.setQueryData(["events", params.id], newEvent);
+
+      return { prevEvent };
+    },
+    onError: (error, data, context) => {
+      queryClient.setQueryData(["events", params.id], context.prevEvent);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["events", params.id]);
+    },
   });
 
   function handleSubmit(formData) {

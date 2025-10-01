@@ -2,7 +2,7 @@
 import { useSelector, useDispatch, connect } from "react-redux";
 
 import classes from "./Counter.module.css";
-import { counterActions } from "../store/index.js";
+import { counterActions } from "../store/counterSlice";
 
 function Counter() {
   const dispatch = useDispatch();

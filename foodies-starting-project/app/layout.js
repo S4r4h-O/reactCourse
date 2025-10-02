@@ -9,7 +9,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
       <div className="header-background">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <defs>
@@ -31,6 +30,7 @@ export default function RootLayout({ children }) {
         </svg>
       </div>
       <MainHeader />
+      <body>{children}</body>
     </html>
   );
 }

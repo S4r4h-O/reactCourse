@@ -1,8 +1,35 @@
+import Image from "next/image";
+
+import getMeal from "@/dbutils/meals";
+import cssClasses from "./page.module.css";
+
 export default function MealDetailsPage({ params }) {
+  const meal = getMeal(params.slug);
+
+  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+
   return (
-    <main>
-      <h1>Meal Details</h1>
-      <p>{params.slug}</p>
-    </main>
+    <>
+      <header className={cssClasses.header}>
+        <div className={cssClasses.image}>
+          <Image src={meal.image} alt={meal.title} fill />
+        </div>
+        <div className={cssClasses.headerText}>
+          <h1>{meal.title}</h1>
+          <p className={cssClasses.creator}>
+            by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
+          </p>
+          <p className={cssClasses.summary}>{meal.summary}</p>
+        </div>
+      </header>
+      <main>
+        <p
+          className={cssClasses.instructions}
+          dangerouslySetInnerHTML={{
+            __html: meal.instructions,
+          }}
+        ></p>
+      </main>
+    </>
   );
 }

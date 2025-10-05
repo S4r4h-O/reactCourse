@@ -1,14 +1,18 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
 import cssClasses from "./page.module.css";
+import loadingCss from "./loading.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "@/dbutils/meals";
 
-export default async function MealsPage() {
+async function Meals() {
   const meals = await getMeals();
 
-  console.log(meals);
+  return <MealsGrid meals={meals} />;
+}
 
+export default function MealsPage() {
   return (
     <>
       <header className={cssClasses.header}>
@@ -24,7 +28,11 @@ export default async function MealsPage() {
         </p>
       </header>
       <main className={cssClasses.main}>
-        <MealsGrid meals={meals} />
+        <Suspense
+          fallback={<p className={loadingCss.loading}>Fetching meals...</p>}
+        >
+          <Meals />
+        </Suspense>
       </main>
     </>
   );

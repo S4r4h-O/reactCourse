@@ -1,10 +1,15 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 import getMeal from "@/dbutils/meals";
 import cssClasses from "./page.module.css";
 
 export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.slug);
+
+  if (!meal) {
+    return notFound();
+  }
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
 

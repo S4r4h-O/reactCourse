@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import getMeal from "@/dbutils/meals";
+import getMeal from "@/utils/meals";
 import cssClasses from "./page.module.css";
 
 export default function MealDetailsPage({ params }) {

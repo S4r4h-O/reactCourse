@@ -36,3 +36,7 @@ typings/
 
 # NextJS files
 .next/
+
+# db
+*.db
+*.sqlite3

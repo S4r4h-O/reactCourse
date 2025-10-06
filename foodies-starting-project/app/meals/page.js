@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import cssClasses from "./page.module.css";
 import loadingCss from "./loading.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
-import { getMeals } from "@/dbutils/meals";
+import { getMeals } from "@/utils/meals";
 
 async function Meals() {
   const meals = await getMeals();
